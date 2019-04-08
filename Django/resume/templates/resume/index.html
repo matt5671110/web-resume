@@ -1,0 +1,53 @@
+{% extends "resume/base.html" %}
+
+{% block title %}{{ overview.name }}{% endblock %}
+
+{% block homenavitemclass %}active{% endblock %}
+
+{% block headername %}{{ overview.name }}{% endblock %}
+{% block headersubtext %}
+{% if nicknames %}
+<span class="pr-1">AKA</span>
+<div class="carousel slide text-nowrap w-75 overflow-hidden" data-ride="carousel">
+	<div class="carousel-inner">
+		{% for nickname in nicknames %}
+		<span class="carousel-item brand-gray {% if forloop.counter == 1 %}active{% endif %}">{{ nickname }}</span>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block bodycontent %}
+{% if overview.about %}
+<div class="row">
+	<div class="col-md">
+		<h2>About Me</h2>
+		<p>
+			{{ overview.about }}
+		</p>
+	</div>
+</div>
+{% endif %}
+{% if overview.experience and overview.education %}
+<div class="row">
+	<div class="col-md-6">
+		<h2>Experience</h2>
+		<p>
+			{{ overview.experience }}
+		</p>
+		<p><a class="btn btn-secondary rounded-0" href="#" role="button">View details &raquo;</a></p>
+	</div>
+	<div class="col-md-6">
+		<h2>Education</h2>
+		<p>
+			{{ overview.education }}
+		</p>
+		<p><a class="btn btn-secondary rounded-0" href="#" role="button">View details &raquo;</a></p>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block footer %}{{ overview.name }}{% endblock %}

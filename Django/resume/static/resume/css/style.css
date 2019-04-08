@@ -1,0 +1,15 @@
+.brand-color {
+	color: rgb(47, 84, 150);
+}
+
+.brand-gray {
+	color: rgb(89, 89, 89);
+}
+
+.skills-list li {
+	list-style-image: url('icons/check.svg');
+}
+
+.w-60 {
+	width: 60%;
+}
