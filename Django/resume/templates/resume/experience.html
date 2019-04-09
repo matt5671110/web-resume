@@ -1,0 +1,123 @@
+{% extends "resume/base.html" %}
+
+{% block title %}{{ overview.name }}{% endblock %}
+
+{% block experiencenavitemclass %}active{% endblock %}
+
+{% block headername %}{{ overview.name }}{% endblock %}
+{% block headersubtext %}
+{% if blurbs %}
+<div class="carousel slide text-nowrap w-75 overflow-hidden" data-ride="carousel">
+	<div class="carousel-inner">
+		{% for blurb in blurbs %}
+		<span class="carousel-item brand-gray {% if forloop.counter == 1 %}active{% endif %}">{{ blurb }}</span>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block bodycontent %}
+<!-- Job Experience -->
+{% if jobs %}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="row">
+			<div class="col-md">
+				<h2>Job Experience</h2>
+			</div>
+		</div>
+		{% for job in jobs %}
+		<div class="row">
+			<div class="col-md">
+				<div class="card rounded-0">
+					<div class="card-body">
+						<div class="row">
+							{% if job.thumbnail %}
+							<div class="col-3 my-auto">
+								<img src="{{ job.thumbnail.url }}" class="img-thumbnail w-100 rounded-0 float-left">
+							</div>
+							{% endif %}
+							<div class="{% if job.thumbnail %}col-9{% else %}col{% endif %}">
+								<div class="row">
+									<h2 class="col">{{ job.location }}</h2>
+									{% if job.date %}
+									<span class="col-auto brand-gray text-right float-right">{{ job.date }}</span>
+									{% endif %}
+								</div>
+								<div class="row">
+									<i class="col brand-gray">{{ job.title }}</i>
+								</div>
+								{% if job.short_description %}
+								<p>{{ job.short_description }}</p>
+								{% endif %}
+								<a href="#" class="btn btn-secondary rounded-0" role="button">View details &raquo;</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+<!-- if jobs -->
+
+<!-- Projects -->
+{% if categories %}
+<div class="row">
+	{% for category in categories %}
+	{% if category.project_set.all %}
+	<div class="{% if num_categories_with_projects > 1 %}col-lg-6{% else %}col{% endif %}">
+		<div class="row">
+			<div class="col">
+				<h2>{{ category.name }}</h2>
+			</div>
+		</div>
+		{% for project in category.project_set.all %}
+		<div class="row">
+			<div class="col">
+				<div class="card rounded-0">
+					<div class="card-body">
+						<div class="row">
+							{% if project.thumbnail %}
+							<div class="col-3 my-auto">
+								<img src="{{ project.thumbnail.url }}" class="img-thumbnail w-100 rounded-0 float-left">
+							</div>
+							{% endif %}
+							<div class="{% if project.thumbnail %}col-9{% else %}col{% endif %}">
+								<h2>{{ project.name }}</h2>
+								{% if project.short_description %}
+								<p>{{ project.short_description }}</p>
+								{% endif %}
+								{% if project.has_source %}
+								<p>
+								{% if project.source_url %}
+								<span>Source Code: <a href="{{ project.source_url }}">{{ project.source_link_text|default:"Unkown" }}</a></span>
+								{% else %}
+								<span class="text-muted">Source Code: unavailable</span>
+								{% endif %} <!-- if source_url -->
+								</p>
+								{% endif %} <!-- if has_source -->
+								<a href="#" class="btn btn-secondary rounded-0" role="button">View details &raquo</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		<!-- for projects -->
+	</div>
+	{% endif %}
+	<!-- if projects -->
+	{% endfor %}
+	<!-- for categories -->
+</div>
+{% endif %}
+<!-- if categories -->
+
+{% endblock %}
+
+{% block footer %}{{ overview.name }}{% endblock %}

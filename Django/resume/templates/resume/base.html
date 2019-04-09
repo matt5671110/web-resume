@@ -27,7 +27,7 @@
 							<a class="nav-link" href="{% url 'index' %}">Home{% block homenavlinkcontent %}{% endblock %}</a>
 						</li>
 						<li class="nav-item {% block experiencenavitemclass %}{% endblock %}">
-							<a class="nav-link" href="#">Experience{% block experiencenavlinkcontent %}{% endblock %}</a>
+							<a class="nav-link" href="{% url 'experience' %}">Experience{% block experiencenavlinkcontent %}{% endblock %}</a>
 						</li>
 						<li class="nav-item {% block educationnavitemclass %}{% endblock %}">
 							<a class="nav-link" href="#">Education{% block educationnavlinkcontent %}{% endblock %}</a>
@@ -56,7 +56,7 @@
 		<!-- footer -->
 		<footer class="container">
 			<hr class="mb-2 pb-0">
-			<p>&copy; {% block footer %}{% endblock %} 2019</p>
+			<p>&copy; {{ test }} {% block footer %}{% endblock %} 2019</p>
 		</footer>
 
 		<!-- Bootstrap js -->
