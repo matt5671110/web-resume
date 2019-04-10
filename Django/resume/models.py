@@ -18,7 +18,8 @@ class Job(models.Model):
 	cover_image = models.ImageField(upload_to='images/cover/', blank=True)
 	location = models.CharField('Where did you work',max_length=200)
 	title = models.CharField('Job title',max_length=200)
-	date = models.CharField('Date Range',max_length=200,null=True)
+	start_date = models.DateField('Start Date',null=True)
+	end_date = models.DateField('End Date',help_text="Leave empty if still working",blank=True,null=True)
 	short_description = models.TextField('Short Description', blank=True)
 	complete_description = models.TextField('Complete Description', blank=True)
 	def __str__(self):
@@ -55,3 +56,11 @@ class Skill(models.Model):
 class ProjectPhoto(models.Model):
 	project = models.ForeignKey(Project, on_delete=models.CASCADE)
 	photo = models.ImageField(upload_to='images/photos/')
+
+class School(models.Model):
+	thumbnail = models.ImageField(upload_to='images/thumbnails/', blank=True)
+	institution = models.CharField(max_length=200)
+	earned = models.CharField('What did you earn',help_text="Diploma, Degree, Certification, etc.",max_length=200)
+	date_recieved = models.DateField('Date Recieved',help_text="Put expected date if not yet recieved")
+	def __str__(self):
+		return self.institution

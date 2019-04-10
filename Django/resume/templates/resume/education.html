@@ -1,0 +1,57 @@
+{% extends "resume/base.html" %}
+
+{% block title %}{{ overview.name }}{% endblock %}
+
+{% block educationnavitemclass %}active{% endblock %}
+
+{% block headername %}{{ overview.name }}{% endblock %}
+{% block headersubtext %}
+{% if schools %}
+<div class="carousel slide text-nowrap w-75 overflow-hidden" data-ride="carousel">
+	<div class="carousel-inner">
+		{% for school in schools %}
+		<span class="carousel-item brand-gray {% if forloop.counter == 1 %}active{% endif %}">{{ school.institution }}</span>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block bodycontent %}
+{% if schools %}
+<div class="row">
+	<div class="col">
+		<h2>Education</h2>
+	</div>
+</div>
+{% for school in schools %}
+<div class="row">
+	<div class="col">
+		<div class="card rounded-0">
+			<div class="card-body">
+				<div class="row">
+					{% if school.thumbnail %}
+					<div class="col-sm-3 col-md-2 my-auto">
+						<img src="{{ school.thumbnail.url }}" class="img-thumbnail w-100 rounded-0 float-left">
+					</div>
+					{% endif %}
+					<div class="{% if school.thumbnail %}col-sm-9 col-md-10{% else %}col{% endif %} my-auto">
+						<div class="row">
+							<h2 class="col">{{ school.institution }}</h2>
+							<span class="col-auto brand-gray text-right float-right">{{ school.date_recieved|date:"F Y" }}</span>
+						</div>
+						<div class="row">
+							<i class="col brand-gray">{{ school.earned }}</i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block footer %}{{ overview.name }}{% endblock %}

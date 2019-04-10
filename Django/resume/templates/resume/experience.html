@@ -34,15 +34,17 @@
 					<div class="card-body">
 						<div class="row">
 							{% if job.thumbnail %}
-							<div class="col-3 my-auto">
+							<div class="col-sm-3 my-auto">
 								<img src="{{ job.thumbnail.url }}" class="img-thumbnail w-100 rounded-0 float-left">
 							</div>
 							{% endif %}
-							<div class="{% if job.thumbnail %}col-9{% else %}col{% endif %}">
+							<div class="{% if job.thumbnail %}col-sm-9{% else %}col{% endif %}">
 								<div class="row">
 									<h2 class="col">{{ job.location }}</h2>
-									{% if job.date %}
-									<span class="col-auto brand-gray text-right float-right">{{ job.date }}</span>
+									{% if job.start_date and job.end_date %}
+									<span class="col-auto brand-gray text-right float-right">{{ job.start_date|date:"F Y" }} - {{ job.end_date|date:"F Y" }}</span>
+									{% elif job.start_date %}
+									<span class="col-auto brand-gray text-right float-right">{{ job.start_date|date:"F Y" }} - Present</span>
 									{% endif %}
 								</div>
 								<div class="row">
@@ -82,11 +84,11 @@
 					<div class="card-body">
 						<div class="row">
 							{% if project.thumbnail %}
-							<div class="col-3 my-auto">
+							<div class="col-sm-3 my-auto">
 								<img src="{{ project.thumbnail.url }}" class="img-thumbnail w-100 rounded-0 float-left">
 							</div>
 							{% endif %}
-							<div class="{% if project.thumbnail %}col-9{% else %}col{% endif %}">
+							<div class="{% if project.thumbnail %}col-sm-9{% else %}col{% endif %}">
 								<h2>{{ project.name }}</h2>
 								{% if project.short_description %}
 								<p>{{ project.short_description|linebreaks }}</p>

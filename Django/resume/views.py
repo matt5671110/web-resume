@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import HttpResponse
 from django.template import RequestContext
+from django.db.models import F
 
-from .models import Overview, Nickname, Job, ExperienceBlurb, ProjectCategory, Project
+from .models import Overview, Nickname, Job, ExperienceBlurb, ProjectCategory, Project, School
 
 def index(request):
 	overview = get_object_or_404(Overview, pk=1)
@@ -11,9 +12,9 @@ def index(request):
 
 def experience(request):
 	overview = get_object_or_404(Overview, pk=1)
-	blurbs = ExperienceBlurb.objects.all
-	jobs = Job.objects.all
-	project_categories = ProjectCategory.objects.all
+	blurbs = ExperienceBlurb.objects.all()
+	jobs = Job.objects.order_by(F('end_date').desc(nulls_first=True))
+	project_categories = ProjectCategory.objects.all()
 	num_categories_with_projects = 0
 	for category in ProjectCategory.objects.all():
 		if category.project_set.count() > 0:
@@ -26,3 +27,12 @@ def experience(request):
 		'num_categories_with_projects': num_categories_with_projects,
 	}
 	return render(request, 'resume/experience.html', context)
+
+def education(request):
+	overview = get_object_or_404(Overview, pk=1)
+	schools = School.objects.order_by('-date_recieved')
+	context = {
+		'overview': overview,
+		'schools': schools,
+	}
+	return render(request, 'resume/education.html', context)
