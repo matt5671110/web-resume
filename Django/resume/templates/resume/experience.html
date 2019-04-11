@@ -96,13 +96,13 @@
 								{% if project.has_source %}
 								<p>
 								{% if project.source_url %}
-								<span>Source Code: <a href="{{ project.source_url }}">{{ project.source_link_text|default:"Unkown" }}</a></span>
+								<span>Source Code: <a href="{{ project.source_url }}" target="_blank">{{ project.source_link_text|default:"Unkown" }}</a></span>
 								{% else %}
 								<span class="text-muted">Source Code: unavailable</span>
 								{% endif %} <!-- if source_url -->
 								</p>
 								{% endif %} <!-- if has_source -->
-								<a href="#" class="btn btn-secondary rounded-0" role="button">View details &raquo</a>
+								<a href="{% url 'project_detail' project.id %}" class="btn btn-secondary rounded-0" role="button">View details &raquo</a>
 							</div>
 						</div>
 					</div>

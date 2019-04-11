@@ -7,7 +7,7 @@
 }
 
 .skills-list li {
-	list-style-image: url('icons/check.svg');
+	list-style-image: url('../icons/check.svg');
 }
 
 .w-60 {

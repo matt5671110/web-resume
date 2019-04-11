@@ -36,3 +36,12 @@ def education(request):
 		'schools': schools,
 	}
 	return render(request, 'resume/education.html', context)
+
+def project_detail(request, project_id):
+	overview = get_object_or_404(Overview, pk=1)
+	project = get_object_or_404(Project, pk=project_id)
+	context = {
+		'overview': overview,
+		'project': project,
+	}
+	return render(request, 'resume/project_detail.html', context)
