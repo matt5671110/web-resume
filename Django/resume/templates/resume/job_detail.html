@@ -1,0 +1,35 @@
+{% extends "resume/base.html" %}
+
+{% block title %}{{ overview.name }}{% endblock %}
+
+{% block experiencenavitemclass %}active{% endblock %}
+
+{% block headername %}{{ overview.name }}{% endblock %}
+{% block headersubtext %}
+<div class="carousel slide text-nowrap w-75 overflow-hidden" data-ride="carousel">
+	<div class="carousel-inner">
+		<span class="carousel-item brand-gray active">{{ job.location }}</span>
+		<span class="carousel-item brand-gray">{{ job.title }}</span>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block bodycontent %}
+<div class="row">
+	<div class="col">
+		<h2>{{ job.location }}</h2>
+		<i class="brand-gray">{{ job.title }}</i>
+	</div>
+</div>
+
+{% if job.complete_description %}
+<div class="row">
+	<div class="col">
+		<p>{{ job.complete_description }}</p>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block footer %}{{ overview.name }}{% endblock %}

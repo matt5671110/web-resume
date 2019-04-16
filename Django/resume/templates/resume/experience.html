@@ -53,7 +53,7 @@
 								{% if job.short_description %}
 								<p>{{ job.short_description|linebreaks }}</p>
 								{% endif %}
-								<a href="#" class="btn btn-secondary rounded-0" role="button">View details &raquo;</a>
+								<a href="{% url 'job_detail' job.id %}" class="btn btn-secondary rounded-0" role="button">View details &raquo;</a>
 							</div>
 						</div>
 					</div>

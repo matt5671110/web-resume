@@ -45,3 +45,12 @@ def project_detail(request, project_id):
 		'project': project,
 	}
 	return render(request, 'resume/project_detail.html', context)
+
+def job_detail(request, job_id):
+	overview = get_object_or_404(Overview, pk=1)
+	job = get_object_or_404(Job, pk=job_id)
+	context = {
+		'overview': overview,
+		'job': job,
+	}
+	return render(request, 'resume/job_detail.html', context)

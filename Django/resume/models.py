@@ -15,7 +15,6 @@ class Nickname(models.Model):
 
 class Job(models.Model):
 	thumbnail = models.ImageField(upload_to='images/thumbnails/', blank=True)
-	cover_image = models.ImageField(upload_to='images/cover/', blank=True)
 	location = models.CharField('Where did you work',max_length=200)
 	title = models.CharField('Job title',max_length=200)
 	start_date = models.DateField('Start Date',null=True)
