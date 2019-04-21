@@ -38,7 +38,7 @@
 								<img src="{{ job.thumbnail.url }}" class="img-thumbnail w-100 rounded-0 float-left">
 							</div>
 							{% endif %}
-							<div class="{% if job.thumbnail %}col-sm-9{% else %}col{% endif %}">
+							<div class="{% if job.thumbnail %}col-sm-9{% else %}col{% endif %} my-auto">
 								<div class="row">
 									<h2 class="col">{{ job.location }}</h2>
 									{% if job.start_date and job.end_date %}
@@ -88,7 +88,7 @@
 								<img src="{{ project.thumbnail.url }}" class="img-thumbnail w-100 rounded-0 float-left">
 							</div>
 							{% endif %}
-							<div class="{% if project.thumbnail %}col-sm-9{% else %}col{% endif %}">
+							<div class="{% if project.thumbnail %}col-sm-9{% else %}col{% endif %} my-auto">
 								<h2>{{ project.name }}</h2>
 								{% if project.short_description %}
 								<p>{{ project.short_description|linebreaks }}</p>
